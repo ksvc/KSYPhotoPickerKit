@@ -144,4 +144,37 @@
 
 
 
+/**
+ 获取相机胶卷中的资源
+
+ @param allowPickingVideo 是否允许选择视频
+ @param allowPickingImage 是否允许选择图片
+ @param completion 完成回调
+ */
+- (void)getCameraRollAssetWithallowPickingVideo:(BOOL)allowPickingVideo
+                              allowPickingImage:(BOOL)allowPickingImage
+                                     completion:(void (^)(NSArray<KSYAssetModel *> *models, NSInteger videoCount))completion;
+
+/**
+ 获取视频实例从相册实例中
+
+ @param asset asset
+ @param completion 完成回调
+ */
+- (void)getVideoWithAsset:(PHAsset *)asset
+               completion:(void (^)(AVAsset * avAsset, NSDictionary * info))completion;
+
+
+/**
+ 保存视频到相册
+
+ @param videoURL 视频本地 URL
+ @param albumName 相册名称
+ @param completion 完成回调
+ */
+- (void)saveVideoAtUrl:(NSURL *)videoURL
+           toAlbumName:(NSString *)albumName
+            completion:(void (^)(NSError *error))completion;
+
+
 @end

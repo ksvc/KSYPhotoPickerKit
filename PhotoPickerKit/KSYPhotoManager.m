@@ -248,6 +248,73 @@ static CGFloat kKSYScreenScale;
     
 }
 
+- (void)getCameraRollAssetWithallowPickingVideo:(BOOL)allowPickingVideo
+                              allowPickingImage:(BOOL)allowPickingImage
+                                     completion:(void (^)(NSArray<KSYAssetModel *> *models, NSInteger videoCount))completion{
+    NSInteger videoCount;
+    __block NSArray *photoArray;
+    PHFetchOptions *option = [[PHFetchOptions alloc] init];
+    option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    option.predicate = [self cfgPredicateWithAllowImage:allowPickingImage allowVideo:allowPickingVideo];
+    PHAssetCollection *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].lastObject;
+    PHFetchResult *fetchResult =[PHAsset fetchAssetsInAssetCollection:cameraRoll options:option];
+    videoCount = [fetchResult countOfAssetsWithMediaType:PHAssetMediaTypeVideo];
+    [self getAssetsFromFetchResult:fetchResult allowPickingVideo:YES allowPickingImage:YES completion:^(NSArray<KSYAssetModel *> *models) {
+        photoArray = (NSArray *)models;
+    }];
+    if (completion) { completion(photoArray,videoCount); }
+}
+
+- (void)getVideoWithAsset:(PHAsset *)asset
+               completion:(void (^)(AVAsset * avAsset, NSDictionary * info))completion{
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    options.networkAccessAllowed = YES;
+    options.version = PHVideoRequestOptionsVersionOriginal;
+    options.progressHandler = ^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+        
+    };
+    PHAsset *phAsset = (PHAsset *)asset;
+    [[PHImageManager defaultManager] requestAVAssetForVideo:phAsset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(asset, nil);
+        });
+    }];
+}
+
+- (void)saveVideoAtUrl:(NSURL *)videoURL
+           toAlbumName:(NSString *)albumName
+            completion:(void (^)(NSError *error))completion{
+    if (@available(iOS 9.0, *)) {
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            //            PHAssetResourceCreationOptions *options = [[PHAssetResourceCreationOptions alloc] init];
+            //            options.shouldMoveFile = YES;
+            [PHAssetCreationRequest creationRequestForAssetFromVideoAtFileURL:videoURL];
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if (success && completion) {
+                    NSLog(@"PHPhotoLibrary保存成功");
+                    completion(nil);
+                } else if (error) {
+                    NSLog(@"iOS9之后,保存视频失败:%@",error.localizedDescription);
+                    if (completion){ completion(error); }
+                }
+            });
+        }];
+    } else {
+        [self.assetLibrary writeVideoAtPathToSavedPhotosAlbum:videoURL completionBlock:^(NSURL *assetURL, NSError *error) {
+            if (error) {
+                NSLog(@"iOS9之前,保存视频失败:%@",error.localizedDescription);
+                if (completion) { completion(error); }
+            } else {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    NSLog(@"ALAssetsLibrary保存成功");
+                    if (completion) { completion(nil); }
+                });
+            }
+        }];
+    }
+}
+
 #pragma mark -
 #pragma mark - helper 相关工具代码
 - (NSPredicate *)cfgPredicateWithAllowImage:(BOOL)image allowVideo:(BOOL)video{
