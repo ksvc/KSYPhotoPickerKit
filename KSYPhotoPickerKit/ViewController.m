@@ -7,9 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "KSYPhotoPickerController.h"
 
-@interface ViewController ()
 
+@interface ViewController () <KSYPhotoPickerControllerDelegate>
+@property (nonatomic, strong)KSYPhotoPickerController *picker;
 @end
 
 @implementation ViewController
@@ -19,7 +21,32 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+#pragma mark -
+#pragma mark - private methods 私有方法
+#pragma mark -
+#pragma mark - public methods 公有方法
+#pragma mark -
+#pragma mark - override methods 复写方法
+#pragma mark -
+#pragma mark - getters and setters 设置器和访问器
+#pragma mark -
+#pragma mark - UITableViewDelegate
+#pragma mark -
+#pragma mark - CustomDelegate 自定义的代理
+#pragma mark -
+#pragma mark - event response 所有触发的事件响应 按钮、通知、分段控件等
 
+- (IBAction)presentAction:(UIButton *)sender {
+    self.picker = [[KSYPhotoPickerController alloc] initWithDelegate:self];
+    
+    [self presentViewController:self.picker animated:YES completion:^{
+        
+    }];
+}
+#pragma mark -
+#pragma mark - life cycle 视图的生命周期
+#pragma mark -
+#pragma mark - StatisticsLog 各种页面统计Log
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -20,7 +20,7 @@ static CGFloat kKSYScreenScale;
 
 @implementation KSYPhotoManager
 
-+ (instancetype)shareInstance{
++ (instancetype)defaultManager{
     static KSYPhotoManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

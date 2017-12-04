@@ -15,6 +15,9 @@
 		3F24A01B1FCD441C002E4DDC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F24A01A1FCD441C002E4DDC /* main.m */; };
 		3F3BBB811FCE8E6900067B48 /* KSYPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBB801FCE8E6900067B48 /* KSYPhotoManager.m */; };
 		3F3BBB841FCE8FEF00067B48 /* KSYAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BBB831FCE8FEF00067B48 /* KSYAlbumModel.m */; };
+		3F5E8B0D1FD1579A006D2199 /* KSYPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E8B0C1FD1579A006D2199 /* KSYPhotoPickerController.m */; };
+		3F5E8B111FD15D14006D2199 /* KSYAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E8B0F1FD15D14006D2199 /* KSYAlbumViewController.m */; };
+		3F5E8B121FD15D14006D2199 /* KSYAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E8B101FD15D14006D2199 /* KSYAlbumViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,13 @@
 		3F3BBB801FCE8E6900067B48 /* KSYPhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSYPhotoManager.m; sourceTree = "<group>"; };
 		3F3BBB821FCE8FEF00067B48 /* KSYAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSYAlbumModel.h; sourceTree = "<group>"; };
 		3F3BBB831FCE8FEF00067B48 /* KSYAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSYAlbumModel.m; sourceTree = "<group>"; };
+		3F5E8B0B1FD1579A006D2199 /* KSYPhotoPickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSYPhotoPickerController.h; sourceTree = "<group>"; };
+		3F5E8B0C1FD1579A006D2199 /* KSYPhotoPickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSYPhotoPickerController.m; sourceTree = "<group>"; };
+		3F5E8B0E1FD15D14006D2199 /* KSYAlbumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSYAlbumViewController.h; sourceTree = "<group>"; };
+		3F5E8B0F1FD15D14006D2199 /* KSYAlbumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSYAlbumViewController.m; sourceTree = "<group>"; };
+		3F5E8B101FD15D14006D2199 /* KSYAlbumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KSYAlbumViewController.xib; sourceTree = "<group>"; };
+		3F5E8B131FD15EFE006D2199 /* KSYPhotoPickerControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSYPhotoPickerControllerDelegate.h; sourceTree = "<group>"; };
+		3FAD8AFF1FD534AA00BA1348 /* KSYPhotoPickerDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSYPhotoPickerDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +91,17 @@
 		3F3BBB7E1FCE8E1300067B48 /* PhotoPickerKit */ = {
 			isa = PBXGroup;
 			children = (
+				3FAD8AFF1FD534AA00BA1348 /* KSYPhotoPickerDefines.h */,
 				3F3BBB7F1FCE8E6900067B48 /* KSYPhotoManager.h */,
 				3F3BBB801FCE8E6900067B48 /* KSYPhotoManager.m */,
 				3F3BBB821FCE8FEF00067B48 /* KSYAlbumModel.h */,
 				3F3BBB831FCE8FEF00067B48 /* KSYAlbumModel.m */,
+				3F5E8B131FD15EFE006D2199 /* KSYPhotoPickerControllerDelegate.h */,
+				3F5E8B0B1FD1579A006D2199 /* KSYPhotoPickerController.h */,
+				3F5E8B0C1FD1579A006D2199 /* KSYPhotoPickerController.m */,
+				3F5E8B0E1FD15D14006D2199 /* KSYAlbumViewController.h */,
+				3F5E8B0F1FD15D14006D2199 /* KSYAlbumViewController.m */,
+				3F5E8B101FD15D14006D2199 /* KSYAlbumViewController.xib */,
 			);
 			path = PhotoPickerKit;
 			sourceTree = "<group>";
@@ -120,7 +137,7 @@
 				TargetAttributes = {
 					3F24A0071FCD441C002E4DDC = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -149,6 +166,7 @@
 			files = (
 				3F24A0181FCD441C002E4DDC /* LaunchScreen.storyboard in Resources */,
 				3F24A0151FCD441C002E4DDC /* Assets.xcassets in Resources */,
+				3F5E8B121FD15D14006D2199 /* KSYAlbumViewController.xib in Resources */,
 				3F24A0131FCD441C002E4DDC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,7 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F5E8B0D1FD1579A006D2199 /* KSYPhotoPickerController.m in Sources */,
 				3F3BBB811FCE8E6900067B48 /* KSYPhotoManager.m in Sources */,
+				3F5E8B111FD15D14006D2199 /* KSYAlbumViewController.m in Sources */,
 				3F3BBB841FCE8FEF00067B48 /* KSYAlbumModel.m in Sources */,
 				3F24A0101FCD441C002E4DDC /* ViewController.m in Sources */,
 				3F24A01B1FCD441C002E4DDC /* main.m in Sources */,
@@ -298,15 +318,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZGJ54Q7R45;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KSYPhotoPickerKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksyun.shortvideo.KSYPhotoPickerKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab59afe7-c387-485a-a9bc-8ed2b2516693";
-				PROVISIONING_PROFILE_SPECIFIER = ksc_wildcard_dev_sunyazhou20170522110817;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -315,7 +336,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KSYPhotoPickerKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

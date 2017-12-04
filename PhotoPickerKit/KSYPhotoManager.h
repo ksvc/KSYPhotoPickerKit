@@ -26,7 +26,13 @@
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 
-+ (instancetype)shareInstance;
+
+/**
+ 对外单例接口
+
+ @return 默认对象
+ */
++ (instancetype)defaultManager;
 
 //================================================
 //=============== 本地授权相关接口 ==================
