@@ -1,2 +1,4 @@
-# KSYPhotoPickerKit
-相册 图片 视频 资源选择器
+## KSYPhotoPickerKit
+<pre>Source Type:<b> Open Source</b></pre>
+
+> Resource Picker for photo and video in iOS album.
