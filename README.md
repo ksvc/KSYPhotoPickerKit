@@ -1,4 +1,4 @@
 ## KSYPhotoPickerKit
 <pre>Source Type:<b> Open Source</b></pre>
 
-> Resource Picket for photo and video from iOS album.
+> Resource Picker for photo and video in iOS album.
