@@ -172,6 +172,14 @@
 
 
 /**
+ 获取PHAsset 类型
+
+ @param asset 资源元数据
+ @return 类型枚举
+ */
+- (KSYAssetModelMediaType)getAssetType:(PHAsset *)asset;
+
+/**
  保存视频到相册
 
  @param videoURL 视频本地 URL

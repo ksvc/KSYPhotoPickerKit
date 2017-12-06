@@ -21,7 +21,14 @@
  @param picker 选择器
  @param models 所有 model
  */
-- (void)photoPickerController:(KSYPhotoPickerController *)picker
+- (void)ksyPhotoPickerController:(KSYPhotoPickerController *)picker
        didFinishPickingVideos:(NSArray<KSYAssetModel *> *)models;
 
+
+/**
+ picker VC取消回调
+
+ @param picker KSYPhotoPickerController实例
+ */
+- (void)ksyksyPhotoPickerControllerDidCancel:(KSYPhotoPickerController *)picker;
 @end

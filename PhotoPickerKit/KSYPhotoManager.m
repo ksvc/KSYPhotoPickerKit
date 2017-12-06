@@ -281,6 +281,20 @@ static CGFloat kKSYScreenScale;
     }];
 }
 
+- (KSYAssetModelMediaType)getAssetType:(PHAsset *)asset{
+    KSYAssetModelMediaType type = KSYAssetModelMediaTypePhoto;
+    PHAsset *phAsset = (PHAsset *)asset;
+    if (phAsset.mediaType == PHAssetMediaTypeVideo)      type = KSYAssetModelMediaTypeVideo;
+    else if (phAsset.mediaType == PHAssetMediaTypeAudio) type = KSYAssetModelMediaTypeAudio;
+    else if (phAsset.mediaType == PHAssetMediaTypeImage) {
+        // Gif
+        if ([[phAsset valueForKey:@"filename"] hasSuffix:@"GIF"]) {
+            type = KSYAssetModelMediaTypePhotoGif;
+        }
+    }
+    return type;
+}
+
 - (void)saveVideoAtUrl:(NSURL *)videoURL
            toAlbumName:(NSString *)albumName
             completion:(void (^)(NSError *error))completion{

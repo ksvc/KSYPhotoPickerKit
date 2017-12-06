@@ -11,8 +11,23 @@
 
 @interface KSYPhotoPickerController : UINavigationController
 
-@property (nonatomic, strong) UIColor  *navigationBarBgColor;    //导航栏背景颜色
-@property (nonatomic, strong) UIColor  *navigationBarTitleColor; //导航栏 title 颜色
+//默认为YES，如果设置为NO, 选择器将不会自己dismiss
+@property (nonatomic, assign) BOOL autoDismiss;
+//是否进入到资源选择 默认为NO
+@property (nonatomic, assign) BOOL pushPhotoPickerVC;
+//是否允许勾选图片 默认为YES
+@property (nonatomic, assign) BOOL allowPickingPhoto;
+//是否允许勾选视频 默认为YES
+@property (nonatomic, assign) BOOL allowPickingVideo;
+
+
+@property (nonatomic, strong) UIColor *navigationBarBgColor;//导航栏背景颜色
+@property (nonatomic, strong) UIColor *navigationBarTitleColor;//导航栏 title 颜色
+
+//用户选中过的图片数组
+@property (nonatomic, strong) NSMutableArray                  *selectedAssets;
+@property (nonatomic, strong) NSMutableArray<KSYAssetModel *> *selectedModels;
+
 
 @property (nonatomic, weak  ) id<KSYPhotoPickerControllerDelegate> pickerDelegate;
 
@@ -24,4 +39,9 @@
  */
 - (instancetype)initWithDelegate:(id <KSYPhotoPickerControllerDelegate>) delegate;
 
+
+/**
+ 取消按钮点击方法
+ */
+- (void)cancelButtonClick;
 @end
