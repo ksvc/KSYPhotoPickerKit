@@ -7,7 +7,8 @@
 //
 
 #import "KSYAlbumCell.h"
-#import <HandyAutoLayout/UIView+HandyAutoLayout.h>
+#import "KSYPhotoManager.h"
+
 
 @interface KSYAlbumCell()
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
@@ -24,14 +25,34 @@
 }
 
 - (void)configCellSubviews{
-    [self.contentView addConstraint:[self.posterImageView constraintLeftEqualToView:self.contentView]];
-    [self.contentView addConstraint:[self.posterImageView constraintTopEqualToView:self.contentView]];
-    [self.contentView addConstraint:[self.posterImageView constraintBottomEqualToView:self.contentView]];
-    [self.contentView addConstraint:[self.posterImageView constraintWidth:70]];
+    [self.posterImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.contentView);
+        make.width.equalTo(@70);
+    }];
     
-    
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.posterImageView.mas_right).offset(10);
+        make.right.equalTo(self.contentView.mas_right).offset(-5);
+        make.centerY.equalTo(self.posterImageView.mas_centerY);
+        make.height.equalTo(@30);
+    }];
 }
 
+- (void)setModel:(KSYAlbumModel *)model{
+    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:model.albumName attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    NSAttributedString *countString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"  (%zd)",model.assetsCount] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+    [nameString appendAttributedString:countString];
+    self.titleLabel.attributedText = nameString;
+    [[KSYPhotoManager defaultManager] getPostImageWithAlbumModel:model completion:^(UIImage *postImage) {
+        self.posterImageView.image = postImage;
+    }];
+    if (model.selectedCount) {
+        self.selectedCountButton.hidden = NO;
+        [self.selectedCountButton setTitle:[NSString stringWithFormat:@"%zd",model.selectedCount] forState:UIControlStateNormal];
+    } else {
+        self.selectedCountButton.hidden = YES;
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

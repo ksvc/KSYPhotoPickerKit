@@ -38,7 +38,9 @@
 
 - (IBAction)presentAction:(UIButton *)sender {
     self.picker = [[KSYPhotoPickerController alloc] initWithDelegate:self];
-    
+    self.picker.pushPhotoPickerVC = YES;
+    self.picker.allowPickingVideo = YES;
+    self.picker.allowPickingPhoto = NO;
     [self presentViewController:self.picker animated:YES completion:^{
         
     }];

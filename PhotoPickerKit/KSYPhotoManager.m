@@ -9,7 +9,7 @@
 #import "KSYPhotoManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-static BOOL kiOS9Later;
+static BOOL kKSYiOS9Later;
 static CGFloat kKSYScreenScale;
 
 @interface KSYPhotoManager ()
@@ -26,7 +26,7 @@ static CGFloat kKSYScreenScale;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
         instance.cachingImageManager = [[PHCachingImageManager alloc] init];
-        kiOS9Later = ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f);
+        kKSYiOS9Later = ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f);
         //如果scale在plus真机上取到3.0，内存会增大特别多。故这里写死成2.0
         kKSYScreenScale = 2.0;
     });
@@ -55,7 +55,7 @@ static CGFloat kKSYScreenScale;
    allowPickingImage:(BOOL)allowPickingImage
           completion:(void (^)(NSArray< KSYAlbumModel *> *models))completion{
     NSMutableArray *albumArr = [NSMutableArray array];
-    //抓取条件哈哈
+    //抓取条件
     PHFetchOptions *option = [[PHFetchOptions alloc] init];
     option.predicate = [self cfgPredicateWithAllowImage:allowPickingImage allowVideo:allowPickingVideo];
     
@@ -91,7 +91,7 @@ static CGFloat kKSYScreenScale;
         }
     }
     //找出后回调
-    if (completion && albumArr.count > 0) { completion(albumArr); }
+    if (completion) { completion(albumArr); }
 }
 
 - (void)getAssetsFromFetchResult:(PHFetchResult *)fetchResult

@@ -9,6 +9,7 @@
 #import "KSYAlbumViewController.h"
 #import "KSYPhotoPickerController.h"
 #import "KSYPhotoManager.h"
+#import "KSYAlbumCell.h"
 
 @interface KSYAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -39,14 +40,14 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __weak KSYAlbumViewController *weakSelf = self;
         
-        [[KSYPhotoManager defaultManager] getAllAlbums:self.photoPickerNC.allowPickingPhoto allowPickingImage:self.photoPickerNC.allowPickingVideo completion:^(NSArray<KSYAlbumModel *> *models) {
+        [[KSYPhotoManager defaultManager] getAllAlbums:self.photoPickerNC.allowPickingVideo allowPickingImage:self.photoPickerNC.allowPickingPhoto completion:^(NSArray<KSYAlbumModel *> *models) {
             __strong KSYAlbumViewController *strongSelf = weakSelf;
             strongSelf.albums = [NSMutableArray arrayWithArray:models];
             for (KSYAlbumModel *albumModel in strongSelf.albums) {
                 albumModel.selectedModels = strongSelf.photoPickerNC.selectedModels;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (strongSelf.tableView) {
+                if (strongSelf.tableView == nil) {
                     strongSelf.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
                     strongSelf.tableView.rowHeight = 70;
                     strongSelf.tableView.tableFooterView = [[UIView alloc] init];
@@ -54,9 +55,8 @@
                     strongSelf.tableView.delegate = self;
                     [strongSelf.tableView registerNib:[UINib nibWithNibName:@"KSYAlbumCell" bundle:nil] forCellReuseIdentifier:@"KSYAlbumCell"];
                     [strongSelf.view addSubview:strongSelf.tableView];
-                } else {
-                    [strongSelf.tableView reloadData];
                 }
+                [strongSelf.tableView reloadData];
             });
         }];
     });
@@ -66,6 +66,27 @@
 #pragma mark - public methods 公有方法
 #pragma mark -
 #pragma mark - override methods 复写方法
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGFloat top = 0;
+    CGFloat tableViewHeight = 0;
+    CGFloat naviBarHeight = self.navigationController.navigationBar.height;
+    BOOL isStatusBarHidden = [UIApplication sharedApplication].isStatusBarHidden;
+    if (self.navigationController.navigationBar.isTranslucent) {
+        top = naviBarHeight;
+        if (KSYiOS7Later && !isStatusBarHidden) top += [KSYCommonTools tz_statusBarHeight];
+        tableViewHeight = self.view.height - top;
+    } else {
+        tableViewHeight = self.view.height;
+    }
+    _tableView.frame = CGRectMake(0, top, self.view.width, tableViewHeight);
+}
+
+- (void)updateViewConstraints{
+    [super updateViewConstraints];
+    
+}
 #pragma mark -
 #pragma mark - getters and setters 设置器和访问器
 - (KSYPhotoPickerController *)photoPickerNC{
@@ -73,6 +94,18 @@
 }
 #pragma mark -
 #pragma mark - UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.albums.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    KSYAlbumCell *cell = (KSYAlbumCell *)[tableView dequeueReusableCellWithIdentifier:@"KSYAlbumCell"];
+    
+    cell.selectedCountButton.backgroundColor = kKSYPPKRGBA(83, 179, 17, 1.0);
+    cell.model = self.albums[indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
 #pragma mark -
 #pragma mark - CustomDelegate 自定义的代理
 #pragma mark -

@@ -10,10 +10,8 @@
 #import "KSYAlbumViewController.h"
 
 #import "KSYPhotoManager.h"
-#import "KSYPhotoPickerDefines.h"
 
-#import <HandyAutoLayout/UIView+HandyAutoLayout.h>
-#import <HandyFrame/UIView+LayoutMethods.h>
+#import <sys/utsname.h>
 
 @interface KSYPhotoPickerController ()
 
@@ -57,6 +55,7 @@
     self.navigationBar.tintColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.autoDismiss = YES;
+    self.pushPhotoPickerVC = YES;
     self.allowPickingPhoto = YES;
     self.allowPickingVideo = YES;
     self.selectedModels = [NSMutableArray array];
@@ -101,7 +100,7 @@
         [self.settingBtn removeFromSuperview];
         self.settingBtn = nil;
         _tipLabel = [[UILabel alloc] init];
-        _tipLabel.frame = CGRectMake(8, 120, self.view.ct_width - 16, 60);
+        _tipLabel.frame = CGRectMake(8, 120, self.view.width - 16, 60);
         _tipLabel.textAlignment = NSTextAlignmentCenter;
         _tipLabel.numberOfLines = 0;
         _tipLabel.font = [UIFont systemFontOfSize:16];
@@ -118,7 +117,7 @@
         
         _settingBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [_settingBtn setTitle:@"设置" forState:UIControlStateNormal];
-        _settingBtn.frame = CGRectMake(0, 180, self.view.ct_width, 44);
+        _settingBtn.frame = CGRectMake(0, 180, self.view.width, 44);
         _settingBtn.titleLabel.font = [UIFont systemFontOfSize:18];
         [_settingBtn addTarget:self action:@selector(settingBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_settingBtn];
@@ -184,9 +183,15 @@
 
 //进入相册选视频
 - (void)pushToPhotoPickerVC{
-    if (self.pushPhotoPickerVC) {
+//    if (self.pushPhotoPickerVC) {
+//    [[KSYPhotoManager defaultManager] getAllAlbums:YES allowPickingImage:NO completion:^(NSArray<KSYAlbumModel *> *models) {
+//        for (KSYAlbumModel *m in models) {
+//            [m debugDescription];
+//        }
+////        NSLog(@"models:%@",);
+//    }];
         //TODO:选择资源
-    }
+//    }
 }
 #pragma mark -
 #pragma mark - life cycle 视图的生命周期
@@ -208,4 +213,42 @@
 }
 */
 
+@end
+
+
+//------------------------------------------
+//---------------工具类 helper---------------
+//------------------------------------------
+@implementation KSYCommonTools
+
++ (BOOL)tz_isIPhoneX {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
+    if ([platform isEqualToString:@"i386"] || [platform isEqualToString:@"x86_64"]) {
+        // 模拟器下采用屏幕的高度来判断
+        return (CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(375, 812)) ||
+                CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(812, 375)));
+    }
+    // iPhone10,6是美版iPhoneX 感谢hegelsu指出：https://github.com/banchichen/TZImagePickerController/issues/635
+    BOOL isIPhoneX = [platform isEqualToString:@"iPhone10,3"] || [platform isEqualToString:@"iPhone10,6"];
+    return isIPhoneX;
+}
+
++ (CGFloat)tz_statusBarHeight {
+    return [self tz_isIPhoneX] ? 44 : 20;
+}
+
+// 获得Info.plist数据字典
++ (NSDictionary *)tz_getInfoDictionary {
+    NSDictionary *infoDict = [NSBundle mainBundle].localizedInfoDictionary;
+    if (!infoDict || !infoDict.count) {
+        infoDict = [NSBundle mainBundle].infoDictionary;
+    }
+    if (!infoDict || !infoDict.count) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+        infoDict = [NSDictionary dictionaryWithContentsOfFile:path];
+    }
+    return infoDict ? infoDict : @{};
+}
 @end

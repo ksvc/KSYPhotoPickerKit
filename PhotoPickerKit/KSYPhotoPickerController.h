@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KSYPhotoPickerControllerDelegate.h"
-
+#import "KSYPhotoPickerDefines.h"
 @interface KSYPhotoPickerController : UINavigationController
 
 //默认为YES，如果设置为NO, 选择器将不会自己dismiss
@@ -44,4 +44,15 @@
  取消按钮点击方法
  */
 - (void)cancelButtonClick;
+@end
+
+//------------------------------------------
+//---------------工具类 helper---------------
+//------------------------------------------
+
+@interface KSYCommonTools : NSObject
++ (BOOL)tz_isIPhoneX;
++ (CGFloat)tz_statusBarHeight;
+// 获得Info.plist数据字典
++ (NSDictionary *)tz_getInfoDictionary;
 @end

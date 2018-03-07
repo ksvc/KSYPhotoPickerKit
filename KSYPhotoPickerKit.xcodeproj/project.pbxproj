@@ -45,6 +45,7 @@
 		3FBE19581FD6A5A200356865 /* KSYAlbumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSYAlbumCell.h; sourceTree = "<group>"; };
 		3FBE19591FD6A5A200356865 /* KSYAlbumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSYAlbumCell.m; sourceTree = "<group>"; };
 		3FBE195A1FD6A5A200356865 /* KSYAlbumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KSYAlbumCell.xib; sourceTree = "<group>"; };
+		3FEDE651204EAF430085A966 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +86,7 @@
 				3F24A0111FCD441C002E4DDC /* Main.storyboard */,
 				3F24A0141FCD441C002E4DDC /* Assets.xcassets */,
 				3F24A0161FCD441C002E4DDC /* LaunchScreen.storyboard */,
+				3FEDE651204EAF430085A966 /* PrefixHeader.pch */,
 				3F24A0191FCD441C002E4DDC /* Info.plist */,
 				3F24A01A1FCD441C002E4DDC /* main.m */,
 			);
@@ -327,13 +329,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = ZGJ54Q7R45;
+				GCC_PREFIX_HEADER = KSYPhotoPickerKit/PrefixHeader.pch;
 				INFOPLIST_FILE = KSYPhotoPickerKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksyun.shortvideo.KSYPhotoPickerKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab59afe7-c387-485a-a9bc-8ed2b2516693";
-				PROVISIONING_PROFILE_SPECIFIER = ksc_wildcard_dev_sunyazhou20170522110817;
+				PROVISIONING_PROFILE = "1a517e52-6a68-4519-b31e-79076ef64d2d";
+				PROVISIONING_PROFILE_SPECIFIER = ksy_universial_profile_sunyazhou20180215091508;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -345,6 +348,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = KSYPhotoPickerKit/PrefixHeader.pch;
 				INFOPLIST_FILE = KSYPhotoPickerKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
