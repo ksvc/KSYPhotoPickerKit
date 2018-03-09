@@ -45,6 +45,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationBar.translucent = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
 }
 
@@ -75,7 +78,7 @@
     if (self.navigationBarBgColor) {
         self.navigationBar.barTintColor = self.navigationBarBgColor;
     } else {
-        self.navigationBar.barTintColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        self.navigationBar.barTintColor = kKSYPPKRGBA(34, 34, 34, 1);
     }
 }
 
@@ -221,7 +224,7 @@
 //------------------------------------------
 @implementation KSYCommonTools
 
-+ (BOOL)tz_isIPhoneX {
++ (BOOL)ksy_isIPhoneX {
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
@@ -235,8 +238,8 @@
     return isIPhoneX;
 }
 
-+ (CGFloat)tz_statusBarHeight {
-    return [self tz_isIPhoneX] ? 44 : 20;
++ (CGFloat)ksy_statusBarHeight {
+    return [self ksy_isIPhoneX] ? 44 : 20;
 }
 
 // 获得Info.plist数据字典

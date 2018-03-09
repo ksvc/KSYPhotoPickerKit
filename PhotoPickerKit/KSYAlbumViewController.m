@@ -10,7 +10,7 @@
 #import "KSYPhotoPickerController.h"
 #import "KSYPhotoManager.h"
 #import "KSYAlbumCell.h"
-
+#import "KSYAssetViewController.h"
 @interface KSYAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView    *tableView;
@@ -75,7 +75,7 @@
     BOOL isStatusBarHidden = [UIApplication sharedApplication].isStatusBarHidden;
     if (self.navigationController.navigationBar.isTranslucent) {
         top = naviBarHeight;
-        if (KSYiOS7Later && !isStatusBarHidden) top += [KSYCommonTools tz_statusBarHeight];
+        if (KSYiOS7Later && !isStatusBarHidden) top += [KSYCommonTools ksy_statusBarHeight];
         tableViewHeight = self.view.height - top;
     } else {
         tableViewHeight = self.view.height;
@@ -105,6 +105,18 @@
     cell.model = self.albums[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    KSYAlbumModel *model = self.albums[indexPath.row];
+    
+    KSYAssetViewController *assetVC = [[KSYAssetViewController alloc] initWithNibName:@"KSYAssetViewController" bundle:nil];
+    assetVC.model = model;
+    [self.navigationController pushViewController:assetVC animated:YES];
 }
 #pragma mark -
 #pragma mark - CustomDelegate 自定义的代理

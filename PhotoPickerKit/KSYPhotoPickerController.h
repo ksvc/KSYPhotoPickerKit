@@ -19,7 +19,10 @@
 @property (nonatomic, assign) BOOL allowPickingPhoto;
 //是否允许勾选视频 默认为YES
 @property (nonatomic, assign) BOOL allowPickingVideo;
-
+//Default is NO / 默认为NO，为YES时可以多选视频/gif图片，和照片共享最大可选张数maxImagesCount的限制
+@property (nonatomic, assign) BOOL allowPickingMultipleVideo;
+/// 默认为NO，如果设置为YES,用户可以选择gif图片
+@property (nonatomic, assign) BOOL allowPickingGif;
 
 @property (nonatomic, strong) UIColor *navigationBarBgColor;//导航栏背景颜色
 @property (nonatomic, strong) UIColor *navigationBarTitleColor;//导航栏 title 颜色
@@ -51,8 +54,8 @@
 //------------------------------------------
 
 @interface KSYCommonTools : NSObject
-+ (BOOL)tz_isIPhoneX;
-+ (CGFloat)tz_statusBarHeight;
++ (BOOL)ksy_isIPhoneX;
++ (CGFloat)ksy_statusBarHeight;
 // 获得Info.plist数据字典
 + (NSDictionary *)tz_getInfoDictionary;
 @end

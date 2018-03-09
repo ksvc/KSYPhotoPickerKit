@@ -36,6 +36,20 @@
         make.centerY.equalTo(self.posterImageView.mas_centerY);
         make.height.equalTo(@30);
     }];
+    self.posterImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.posterImageView.clipsToBounds = YES;
+    
+    
+    [self.selectedCountButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right).offset(-5.);
+        make.centerY.equalTo(self.titleLabel.mas_centerY);
+        make.width.height.equalTo(@24);
+    }];
+    self.selectedCountButton.layer.cornerRadius = 12;
+    self.selectedCountButton.clipsToBounds = YES;
+    self.selectedCountButton.backgroundColor = [UIColor redColor];
+    [self.selectedCountButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.selectedCountButton.titleLabel.font = [UIFont systemFontOfSize:15];
 }
 
 - (void)setModel:(KSYAlbumModel *)model{
