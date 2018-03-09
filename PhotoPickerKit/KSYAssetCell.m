@@ -41,6 +41,8 @@
     self.timeLength.font = [UIFont boldSystemFontOfSize:11];
     self.timeLength.textColor = [UIColor whiteColor];
     self.timeLength.textAlignment = NSTextAlignmentRight;
+    
+    self.showSelectBtn = YES;
 }
 
 #pragma mark -
@@ -153,15 +155,15 @@
     [self setNeedsLayout];
 }
 
-//- (void)setShowSelectBtn:(BOOL)showSelectBtn{
-//    _showSelectBtn = showSelectBtn;
-//    if (!self.selectPhotoButton.hidden) {
-//        self.selectPhotoButton.hidden = !showSelectBtn;
-//    }
-//    if (!self.selectImageView.hidden) {
-//        self.selectImageView.hidden = !showSelectBtn;
-//    }
-//}
+- (void)setShowSelectBtn:(BOOL)showSelectBtn{
+    _showSelectBtn = showSelectBtn;
+    if (!self.selectPhotoButton.hidden) {
+        self.selectPhotoButton.hidden = !showSelectBtn;
+    }
+    if (!self.selectImageView.hidden) {
+        self.selectImageView.hidden = !showSelectBtn;
+    }
+}
 
 - (void)setType:(KSYAssetCellType)type {
     _type = type;
@@ -180,6 +182,8 @@
         self.bottomView.hidden = NO;
         self.timeLength.text = _model.timeLength;
         self.videoImgView.hidden = NO;
+        self.selectImageView.hidden = NO;
+        self.selectPhotoButton.hidden = NO;
         _timeLength.textAlignment = NSTextAlignmentRight;
     } else if (type == KSYAssetCellTypePhotoGif && self.allowPickingGif) {
         self.bottomView.hidden = NO;

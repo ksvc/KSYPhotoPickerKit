@@ -122,6 +122,10 @@ UIAlertViewDelegate
     self.numberImageView.image  = [UIImage imageNamedFromMyBundle:@"photo_number_icon"];
     self.numberImageView.hidden = [self photoPickerNC].selectedModels.count <= 0;
     self.numberImageView.backgroundColor = [UIColor clearColor];
+    
+
+    [self.doneButton setTitleColor:kKSYPPKRGBA(83, 179, 17, 1.0) forState:UIControlStateNormal];
+    [self.doneButton setTitleColor:kKSYPPKRGBA(83, 179, 17, 0.5) forState:UIControlStateDisabled];
 }
 
 /// Scale image / 缩放图片
@@ -165,9 +169,9 @@ UIAlertViewDelegate
     }];
     
     [self.doneButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bottomToolBar.mas_top);
+        make.top.equalTo(self.bottomToolBar.mas_top).offset(5);
         make.right.equalTo(self.bottomToolBar.mas_right).offset(-12);
-        make.width.height.equalTo(@33);
+        make.height.equalTo(@33);
     }];
     
     
@@ -198,8 +202,8 @@ UIAlertViewDelegate
     // the cell dipaly photo or video / 展示照片或视频的cell
     KSYAssetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KSYAssetCell" forIndexPath:indexPath];
     cell.allowPickingMultipleVideo = self.photoPickerNC.allowPickingMultipleVideo;
-//    cell.photoDefImageName = self.photoPickerNC.photoDefImageName;
-//    cell.photoSelImageName = self.photoPickerNC.photoSelImageName;
+    
+    cell.showSelectBtn = YES;
     KSYAssetModel *model = self.models[indexPath.row];
     
     cell.allowPickingGif = self.photoPickerNC.allowPickingGif;

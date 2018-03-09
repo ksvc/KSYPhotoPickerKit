@@ -33,6 +33,10 @@
 #pragma mark - UITableViewDelegate
 #pragma mark -
 #pragma mark - CustomDelegate 自定义的代理
+- (void)ksyPhotoPickerController:(KSYPhotoPickerController *)picker
+          didFinishPickingVideos:(NSArray *)phassets{
+    NSLog(@"勾选所有的:%@",phassets);
+}
 #pragma mark -
 #pragma mark - event response 所有触发的事件响应 按钮、通知、分段控件等
 

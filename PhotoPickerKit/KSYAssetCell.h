@@ -27,8 +27,8 @@ typedef NS_ENUM(NSUInteger,KSYAssetCellType) {
 @property (nonatomic, assign) BOOL             allowPickingMultipleVideo;
 @property (nonatomic, copy  ) NSString         *representedAssetIdentifier;
 @property (nonatomic, assign) int32_t          imageRequestID;
-//@property (nonatomic, copy  ) NSString         *photoSelImageName;
-//@property (nonatomic, copy  ) NSString         *photoDefImageName;
-//@property (nonatomic, assign) BOOL             showSelectBtn;
+@property (nonatomic, copy  ) NSString         *photoSelImageName;
+@property (nonatomic, copy  ) NSString         *photoDefImageName;
+@property (nonatomic, assign) BOOL             showSelectBtn;
 //@property (assign, nonatomic) BOOL             allowPreview;
 @end

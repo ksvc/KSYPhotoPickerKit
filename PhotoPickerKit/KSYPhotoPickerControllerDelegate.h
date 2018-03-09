@@ -19,10 +19,10 @@
  适配选择完成返回所有装有视频 PHAsset 的 模型对象
 
  @param picker 选择器
- @param models 所有 model
+ @param phassets 所有 PHAsset
  */
 - (void)ksyPhotoPickerController:(KSYPhotoPickerController *)picker
-       didFinishPickingVideos:(NSArray<KSYAssetModel *> *)models;
+       didFinishPickingVideos:(NSArray *)phassets;
 
 
 /**
