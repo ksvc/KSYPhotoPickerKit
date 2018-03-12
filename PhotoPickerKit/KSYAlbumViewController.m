@@ -11,6 +11,7 @@
 #import "KSYPhotoManager.h"
 #import "KSYAlbumCell.h"
 #import "KSYAssetViewController.h"
+
 @interface KSYAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView    *tableView;

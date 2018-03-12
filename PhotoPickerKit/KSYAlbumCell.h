@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KSYAlbumModel.h"
-
+#import <Masonry/Masonry.h>
 @interface KSYAlbumCell : UITableViewCell
 @property (nonatomic, strong) KSYAlbumModel *model;
 @property (weak, nonatomic  ) IBOutlet UIButton      *selectedCountButton;

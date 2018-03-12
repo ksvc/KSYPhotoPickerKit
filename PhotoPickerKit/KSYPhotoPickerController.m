@@ -8,10 +8,9 @@
 
 #import "KSYPhotoPickerController.h"
 #import "KSYAlbumViewController.h"
-
 #import "KSYPhotoManager.h"
-
 #import <sys/utsname.h>
+#import <YYKit/YYKit.h>
 
 @interface KSYPhotoPickerController ()
 

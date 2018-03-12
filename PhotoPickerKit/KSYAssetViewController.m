@@ -12,6 +12,7 @@
 #import "KSYAssetCell.h"
 #import "KSYPhotoPickerControllerDelegate.h"
 #import "NSBundle+KSYPhotoPicker.h"
+#import <YYKit/YYKit.h>
 static CGFloat itemMargin = 5;  //collectionview 上左下右间距
 @interface KSYAssetViewController ()
 <

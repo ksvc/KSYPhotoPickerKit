@@ -8,7 +8,7 @@
 
 #import "KSYAlbumCell.h"
 #import "KSYPhotoManager.h"
-#import "KSYPhotoPickerDefines.h"
+
 
 @interface KSYAlbumCell()
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;

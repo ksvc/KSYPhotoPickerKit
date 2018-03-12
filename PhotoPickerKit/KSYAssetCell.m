@@ -47,7 +47,6 @@
 #pragma mark -
 #pragma mark - private methods 私有方法
 - (void)fetchBigImage {
-    
     self.bigImageRequestID = [[KSYPhotoManager defaultManager] getPhotoWithAsset:self.model.asset photoWidth:self.width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
         if (_progressView) { [self hideProgressView]; }
     } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
@@ -65,7 +64,6 @@
         }
     } networkAccessAllowed:YES];
 }
-
 - (void)hideProgressView {
     self.progressView.hidden = YES;
     self.imageView.alpha = 1.0;
@@ -75,6 +73,7 @@
 #pragma mark -
 #pragma mark - override methods 复写方法
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
+    
     [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
