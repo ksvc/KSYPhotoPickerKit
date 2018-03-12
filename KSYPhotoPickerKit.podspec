@@ -33,7 +33,6 @@ Pod::Spec.new do |s|
   DESC
   s.platform     = :ios, '8.1'
   s.ios.deployment_target = '8.1'
-
   s.requires_arc = true
   s.source       = { 
     :git => 'https://github.com/ksvc/KSYPhotoPickerKit.git', 
@@ -41,5 +40,8 @@ Pod::Spec.new do |s|
   }
   s.dependency 'Masonry'
   s.dependency 'YYKit'
+  s.resources    = "PhotoPickerKit/*.{png,bundle}"
+  s.source_files = "PhotoPickerKit/*.{h,m}"
+  s.frameworks   = "Photos"
 
 end
