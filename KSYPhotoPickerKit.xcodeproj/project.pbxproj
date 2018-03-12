@@ -57,7 +57,6 @@
 		3FBAE35F2051251E006CB662 /* KSYAssetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KSYAssetCell.xib; sourceTree = "<group>"; };
 		3FBAE36220512F84006CB662 /* KSYProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSYProgressView.h; sourceTree = "<group>"; };
 		3FBAE36320512F84006CB662 /* KSYProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSYProgressView.m; sourceTree = "<group>"; };
-		3FBAE3D020513C3B006CB662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBAE3F020513E0D006CB662 /* KSYPhotoResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KSYPhotoResources.bundle; sourceTree = "<group>"; };
 		3FBAE3F220513F97006CB662 /* NSBundle+KSYPhotoPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KSYPhotoPicker.h"; sourceTree = "<group>"; };
 		3FBAE3F320513F97006CB662 /* NSBundle+KSYPhotoPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KSYPhotoPicker.m"; sourceTree = "<group>"; };
@@ -83,7 +82,6 @@
 			children = (
 				3F3BBB7E1FCE8E1300067B48 /* PhotoPickerKit */,
 				3F24A00A1FCD441C002E4DDC /* KSYPhotoPickerKit */,
-				3FBAE3CF20513C3B006CB662 /* KSYPhotoResources */,
 				3F24A0091FCD441C002E4DDC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,14 +140,6 @@
 				3FBAE3F020513E0D006CB662 /* KSYPhotoResources.bundle */,
 			);
 			path = PhotoPickerKit;
-			sourceTree = "<group>";
-		};
-		3FBAE3CF20513C3B006CB662 /* KSYPhotoResources */ = {
-			isa = PBXGroup;
-			children = (
-				3FBAE3D020513C3B006CB662 /* Info.plist */,
-			);
-			path = KSYPhotoResources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

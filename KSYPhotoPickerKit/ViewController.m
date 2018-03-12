@@ -37,6 +37,13 @@
           didFinishPickingVideos:(NSArray *)phassets{
     NSLog(@"勾选所有的:%@",phassets);
 }
+
+- (void)ksyPhotoPickerController:(KSYPhotoPickerController *)picker
+               singleSelectModel:(KSYAssetModel *)model{
+    NSLog(@"%@",model);
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
 #pragma mark -
 #pragma mark - event response 所有触发的事件响应 按钮、通知、分段控件等
 
@@ -45,6 +52,7 @@
     self.picker.pushPhotoPickerVC = YES;
     self.picker.allowPickingVideo = YES;
     self.picker.allowPickingPhoto = NO;
+    self.picker.allowPickingMultipleVideo = NO;
     [self presentViewController:self.picker animated:YES completion:^{
         
     }];

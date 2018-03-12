@@ -26,6 +26,14 @@
 
 
 /**
+ 单选点击某个视频文件 多选不调用此代理
+
+ @param picker 选择器
+ @param model 选择的模型对象
+ */
+- (void)ksyPhotoPickerController:(KSYPhotoPickerController *)picker singleSelectModel:(KSYAssetModel *)model;
+
+/**
  picker VC取消回调
 
  @param picker KSYPhotoPickerController实例

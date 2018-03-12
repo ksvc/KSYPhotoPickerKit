@@ -42,7 +42,6 @@
     self.timeLength.textColor = [UIColor whiteColor];
     self.timeLength.textAlignment = NSTextAlignmentRight;
     
-    self.showSelectBtn = YES;
 }
 
 #pragma mark -
@@ -182,8 +181,6 @@
         self.bottomView.hidden = NO;
         self.timeLength.text = _model.timeLength;
         self.videoImgView.hidden = NO;
-        self.selectImageView.hidden = NO;
-        self.selectPhotoButton.hidden = NO;
         _timeLength.textAlignment = NSTextAlignmentRight;
     } else if (type == KSYAssetCellTypePhotoGif && self.allowPickingGif) {
         self.bottomView.hidden = NO;

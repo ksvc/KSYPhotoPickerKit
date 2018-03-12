@@ -203,7 +203,7 @@ UIAlertViewDelegate
     KSYAssetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KSYAssetCell" forIndexPath:indexPath];
     cell.allowPickingMultipleVideo = self.photoPickerNC.allowPickingMultipleVideo;
     
-    cell.showSelectBtn = YES;
+    cell.showSelectBtn = [self photoPickerNC].allowPickingMultipleVideo;
     KSYAssetModel *model = self.models[indexPath.row];
     
     cell.allowPickingGif = self.photoPickerNC.allowPickingGif;
@@ -248,7 +248,7 @@ UIAlertViewDelegate
             NSLog(@"Can not choose both video and photo");
         } else {
             //TODO:播放视频
-            NSLog(@"播放视频:功能待完善");
+            [self callDelegateSingleSelected:model];
         }
     } else if (model.type == KSYAssetModelMediaTypePhotoGif && [self photoPickerNC].allowPickingGif && ![self photoPickerNC].allowPickingMultipleVideo) {
         if ([self photoPickerNC].selectedModels.count > 0) {
@@ -331,6 +331,14 @@ UIAlertViewDelegate
         [self.photoPickerNC.pickerDelegate ksyPhotoPickerController:self.photoPickerNC didFinishPickingVideos:assets];
     }
 }
+
+//单选
+- (void)callDelegateSingleSelected:(KSYAssetModel *)model{
+    if ([self.photoPickerNC.pickerDelegate respondsToSelector:@selector(ksyPhotoPickerController:singleSelectModel:)]) {
+        [self.photoPickerNC.pickerDelegate ksyPhotoPickerController:self.photoPickerNC singleSelectModel:model];
+    }
+}
+
 #pragma mark -
 #pragma mark - public methods 公有方法
 - (void)didReceiveMemoryWarning {
