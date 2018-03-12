@@ -17,4 +17,7 @@
 #define KSYiOS9Later ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
 #define KSYiOS9_1Later ([UIDevice currentDevice].systemVersion.floatValue >= 9.1f)
 
+#import <Masonry/Masonry.h>
+#import <YYKit/YYKit.h>
+
 #endif /* KSYPhotoPickerDefines_h */

@@ -38,10 +38,12 @@ Pod::Spec.new do |s|
     :git => 'https://github.com/ksvc/KSYPhotoPickerKit.git', 
     :tag => 'v'+s.version.to_s 
   }
+  s.resources    = "PhotoPickerKit/*.{png,bundle}"
+  s.source_files = "PhotoPickerKit/*.{h,m,xib}"
+  s.frameworks   = "Photos"
+
   s.dependency 'Masonry'
   s.dependency 'YYKit'
-  s.resources    = "PhotoPickerKit/*.{png,bundle}"
-  s.source_files = "PhotoPickerKit/*.{h,m}"
-  s.frameworks   = "Photos"
+  
 
 end
