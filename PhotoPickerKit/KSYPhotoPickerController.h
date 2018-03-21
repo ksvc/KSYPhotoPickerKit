@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "KSYPhotoPickerControllerDelegate.h"
 #import "KSYPhotoPickerDefines.h"
+#import "KSYAlbumModel.h"
+
 @interface KSYPhotoPickerController : UINavigationController
 
 //默认为YES，如果设置为NO, 选择器将不会自己dismiss

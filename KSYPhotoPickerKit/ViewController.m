@@ -11,7 +11,7 @@
 
 
 @interface ViewController () <KSYPhotoPickerControllerDelegate>
-@property (nonatomic, strong)KSYPhotoPickerController *picker;
+
 @end
 
 @implementation ViewController
@@ -48,14 +48,12 @@
 #pragma mark - event response 所有触发的事件响应 按钮、通知、分段控件等
 
 - (IBAction)presentAction:(UIButton *)sender {
-    self.picker = [[KSYPhotoPickerController alloc] initWithDelegate:self];
-    self.picker.pushPhotoPickerVC = YES;
-    self.picker.allowPickingVideo = YES;
-    self.picker.allowPickingPhoto = NO;
-    self.picker.allowPickingMultipleVideo = NO;
-    [self presentViewController:self.picker animated:YES completion:^{
-        
-    }];
+    KSYPhotoPickerController *picker = [[KSYPhotoPickerController alloc] initWithDelegate:self];
+    picker.pushPhotoPickerVC = YES;
+    picker.allowPickingVideo = YES;
+    picker.allowPickingPhoto = NO;
+    picker.allowPickingMultipleVideo = NO;
+    [self presentViewController:picker animated:YES completion:nil];
 }
 #pragma mark -
 #pragma mark - life cycle 视图的生命周期

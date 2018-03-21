@@ -56,6 +56,9 @@
                     strongSelf.tableView.delegate = self;
                     [strongSelf.tableView registerNib:[UINib nibWithNibName:@"KSYAlbumCell" bundle:nil] forCellReuseIdentifier:@"KSYAlbumCell"];
                     [strongSelf.view addSubview:strongSelf.tableView];
+                    [strongSelf.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.edges.equalTo(strongSelf.view);
+                    }];
                 }
                 [strongSelf.tableView reloadData];
             });
@@ -65,23 +68,26 @@
 
 #pragma mark -
 #pragma mark - public methods 公有方法
+- (void)reset{
+    [self configSubviews];
+}
 #pragma mark -
 #pragma mark - override methods 复写方法
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    CGFloat top = 0;
-    CGFloat tableViewHeight = 0;
-    CGFloat naviBarHeight = self.navigationController.navigationBar.height;
-    BOOL isStatusBarHidden = [UIApplication sharedApplication].isStatusBarHidden;
-    if (self.navigationController.navigationBar.isTranslucent) {
-        top = naviBarHeight;
-        if (KSYiOS7Later && !isStatusBarHidden) top += [KSYCommonTools ksy_statusBarHeight];
-        tableViewHeight = self.view.height - top;
-    } else {
-        tableViewHeight = self.view.height;
-    }
-    _tableView.frame = CGRectMake(0, top, self.view.width, tableViewHeight);
+//    CGFloat top = 0;
+//    CGFloat tableViewHeight = 0;
+//    CGFloat naviBarHeight = self.navigationController.navigationBar.height;
+//    BOOL isStatusBarHidden = [UIApplication sharedApplication].isStatusBarHidden;
+//    if (self.navigationController.navigationBar.isTranslucent) {
+//        top = naviBarHeight;
+//        if (KSYiOS7Later && !isStatusBarHidden) top += [KSYCommonTools ksy_statusBarHeight];
+//        tableViewHeight = self.view.height - top;
+//    } else {
+//        tableViewHeight = self.view.height;
+//    }
+//    _tableView.frame = CGRectMake(0, top, self.view.width, tableViewHeight);
 }
 
 - (void)updateViewConstraints{

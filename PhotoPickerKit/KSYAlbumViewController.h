@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YYKit/YYKit.h>
+
 @interface KSYAlbumViewController : UIViewController
 
+- (void)reset;
 @end

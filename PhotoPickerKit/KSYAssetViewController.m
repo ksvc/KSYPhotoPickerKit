@@ -12,7 +12,6 @@
 #import "KSYAssetCell.h"
 #import "KSYPhotoPickerControllerDelegate.h"
 #import "NSBundle+KSYPhotoPicker.h"
-#import <YYKit/YYKit.h>
 static CGFloat itemMargin = 5;  //collectionview 上左下右间距
 @interface KSYAssetViewController ()
 <
@@ -98,7 +97,7 @@ UIAlertViewDelegate
 - (void)configCollectionView {
     
     self.layout = [[UICollectionViewFlowLayout alloc] init];
-    CGFloat itemWH = (kScreenWidth - (5 + 1) * itemMargin) / 4;
+    CGFloat itemWH = ([UIScreen mainScreen].bounds.size.width - (5 + 1) * itemMargin) / 4;
     self.layout.itemSize = CGSizeMake(itemWH, itemWH);
     self.layout.minimumInteritemSpacing = itemMargin;
     self.layout.minimumLineSpacing = itemMargin;
@@ -110,7 +109,8 @@ UIAlertViewDelegate
     self.collectionView.delegate = self;
     self.collectionView.alwaysBounceHorizontal = NO;
     self.collectionView.contentInset = UIEdgeInsetsMake(itemMargin, itemMargin, itemMargin, itemMargin);
-    self.collectionView.contentSize = CGSizeMake(self.view.size.width, ((self.model.assetsCount + 4 - 1) / 4) * self.view.size.width);
+    
+    self.collectionView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), ((self.model.assetsCount + 4 - 1) / 4) * CGRectGetWidth(self.view.frame));
     UINib *nib = [UINib nibWithNibName:@"KSYAssetCell" bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"KSYAssetCell"];
 }
@@ -285,7 +285,8 @@ UIAlertViewDelegate
         [assets addObject:@1];
         [infoArr addObject:@1];
     }
-    CGFloat itemWH = (kScreenWidth - (5 + 1) * itemMargin) / 4;
+    
+    CGFloat itemWH = (CGRectGetWidth([UIScreen mainScreen].bounds) - (5 + 1) * itemMargin) / 4;
     for (NSUInteger i = 0; i < [self photoPickerNC].selectedModels.count; i++) {
         KSYAssetModel *model = self.photoPickerNC.selectedModels[i];
         [[KSYPhotoManager defaultManager] getPhotoWithAsset:model.asset photoWidth:itemWH completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {

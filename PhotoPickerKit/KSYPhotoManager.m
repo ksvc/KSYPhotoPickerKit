@@ -156,7 +156,7 @@ static CGFloat kKSYScreenScale;
     
     
     if (phAsset.representsBurst) {
-        PHFetchOptions *fetchOptions = [[PHFetchOptions alloc]init];
+        PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
         fetchOptions.includeAllBurstAssets = YES;
         PHFetchResult *burstSequence = [PHAsset fetchAssetsWithBurstIdentifier:phAsset.burstIdentifier options:fetchOptions];
         phAsset = burstSequence.firstObject;

@@ -9,7 +9,6 @@
 #import "KSYAlbumCell.h"
 #import "KSYPhotoManager.h"
 
-
 @interface KSYAlbumCell()
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

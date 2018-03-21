@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
-#import <YYKit/YYKit.h>
+
 typedef NS_ENUM(NSUInteger,KSYAssetCellType) {
     KSYAssetCellTypePhoto = 0,
     KSYAssetCellTypeLivePhoto,

@@ -10,13 +10,15 @@
 #import "KSYAlbumViewController.h"
 #import "KSYPhotoManager.h"
 #import <sys/utsname.h>
-#import <YYKit/YYKit.h>
 
+
+static const NSUInteger kMaxRetryLimit = 100;
 @interface KSYPhotoPickerController ()
 
 @property (nonatomic, strong) UILabel  *tipLabel;   //未授权提示
 @property (nonatomic, strong) UIButton *settingBtn; //未授权设置按钮
 
+@property (nonatomic, assign) NSUInteger authCount; //授权失败计数
 @end
 
 @implementation KSYPhotoPickerController
@@ -30,11 +32,11 @@
 }
 
 - (instancetype)initWithDelegate:(id <KSYPhotoPickerControllerDelegate>) delegate{
-    NSString *nib = NSStringFromClass([KSYAlbumViewController class]);
     //内部 root 控制器
     KSYAlbumViewController *albumPickerVC = [[KSYAlbumViewController alloc] init];
     self = [super initWithRootViewController:albumPickerVC];
     if (self) {
+        self.authCount = 0;
         self.pickerDelegate = delegate;
         [self configDefaultSetting]; //默认配置
         [self pushPhotoPickerVCWhenAuthed];
@@ -45,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationBar.translucent = YES;
+    self.navigationBar.translucent = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
 }
@@ -87,8 +89,18 @@
         NSLog(@"授权失败");
         [self configTipSubviews:YES];
         //TODO:1.增加探测PHAuthorizationStatus 授权变化并自动push 逻辑
-        
+        if (self.authCount > kMaxRetryLimit) {
+            self.authCount = 0;
+        } else {
+            self.authCount += 1;
+            [self performSelector:@selector(pushPhotoPickerVCWhenAuthed) withObject:self afterDelay:0.5];
+        }
     } else {
+        if (self.authCount != 0) {
+            //走到这里说明授权失败过
+            [self hanldeAuthSuccess];
+            self.authCount = 0;
+        }
         NSLog(@"授权成功");
         [self configTipSubviews:NO];
         [self pushToPhotoPickerVC];
@@ -102,7 +114,8 @@
         [self.settingBtn removeFromSuperview];
         self.settingBtn = nil;
         _tipLabel = [[UILabel alloc] init];
-        _tipLabel.frame = CGRectMake(8, 120, self.view.width - 16, 60);
+        
+        _tipLabel.frame = CGRectMake(8, 120, CGRectGetWidth(self.view.frame) - 16, 60);
         _tipLabel.textAlignment = NSTextAlignmentCenter;
         _tipLabel.numberOfLines = 0;
         _tipLabel.font = [UIFont systemFontOfSize:16];
@@ -119,14 +132,16 @@
         
         _settingBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [_settingBtn setTitle:@"设置" forState:UIControlStateNormal];
-        _settingBtn.frame = CGRectMake(0, 180, self.view.width, 44);
+        _settingBtn.frame = CGRectMake(0, 180, CGRectGetWidth(self.view.frame), 44);
         _settingBtn.titleLabel.font = [UIFont systemFontOfSize:18];
         [_settingBtn addTarget:self action:@selector(settingBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_settingBtn];
     } else {
+        self.tipLabel.hidden = YES;
+        self.settingBtn.hidden = YES;
         [self.tipLabel removeFromSuperview];
-        self.tipLabel = nil;
         [self.settingBtn removeFromSuperview];
+        self.tipLabel = nil;
         self.settingBtn = nil;
     }
 }
@@ -178,6 +193,14 @@
 }
 #pragma mark -
 #pragma mark - event response 所有触发的事件响应 按钮、通知、分段控件等
+- (void)hanldeAuthSuccess{
+    UIViewController *root = [self.viewControllers firstObject];
+    if ([root isKindOfClass:[KSYAlbumViewController class]]) {
+        [(KSYAlbumViewController *)root reset];
+    }
+}
+
+
 //跳转系统设置页面
 - (void)settingBtnClick {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];

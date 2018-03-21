@@ -26,12 +26,9 @@
 		3FBAE3F420513F97006CB662 /* NSBundle+KSYPhotoPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBAE3F320513F97006CB662 /* NSBundle+KSYPhotoPicker.m */; };
 		3FBE195B1FD6A5A200356865 /* KSYAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE19591FD6A5A200356865 /* KSYAlbumCell.m */; };
 		3FBE195C1FD6A5A200356865 /* KSYAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FBE195A1FD6A5A200356865 /* KSYAlbumCell.xib */; };
-		6A8773713EFFBF64FAB1E630 /* Pods_KSYPhotoPickerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B6A17FB264FC1BB12BE141C /* Pods_KSYPhotoPickerKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		10601AF95FAB5A6F64017B14 /* Pods-KSYPhotoPickerKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSYPhotoPickerKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KSYPhotoPickerKit/Pods-KSYPhotoPickerKit.debug.xcconfig"; sourceTree = "<group>"; };
-		32BF960AE4775069ABEF1FBF /* Pods-KSYPhotoPickerKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSYPhotoPickerKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-KSYPhotoPickerKit/Pods-KSYPhotoPickerKit.release.xcconfig"; sourceTree = "<group>"; };
 		3F24A0081FCD441C002E4DDC /* KSYPhotoPickerKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSYPhotoPickerKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F24A00B1FCD441C002E4DDC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3F24A00C1FCD441C002E4DDC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,7 +64,6 @@
 		3FBE19591FD6A5A200356865 /* KSYAlbumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSYAlbumCell.m; sourceTree = "<group>"; };
 		3FBE195A1FD6A5A200356865 /* KSYAlbumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KSYAlbumCell.xib; sourceTree = "<group>"; };
 		3FEDE651204EAF430085A966 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		9B6A17FB264FC1BB12BE141C /* Pods_KSYPhotoPickerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSYPhotoPickerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,29 +71,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A8773713EFFBF64FAB1E630 /* Pods_KSYPhotoPickerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03D0887F8DAAA256B1AD4D4C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9B6A17FB264FC1BB12BE141C /* Pods_KSYPhotoPickerKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3F249FFF1FCD441C002E4DDC = {
 			isa = PBXGroup;
 			children = (
 				3F3BBB7E1FCE8E1300067B48 /* PhotoPickerKit */,
 				3F24A00A1FCD441C002E4DDC /* KSYPhotoPickerKit */,
 				3F24A0091FCD441C002E4DDC /* Products */,
-				6A6C47EF00738353064720CA /* Pods */,
-				03D0887F8DAAA256B1AD4D4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,15 +142,6 @@
 			path = PhotoPickerKit;
 			sourceTree = "<group>";
 		};
-		6A6C47EF00738353064720CA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				10601AF95FAB5A6F64017B14 /* Pods-KSYPhotoPickerKit.debug.xcconfig */,
-				32BF960AE4775069ABEF1FBF /* Pods-KSYPhotoPickerKit.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,12 +149,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F24A01E1FCD441C002E4DDC /* Build configuration list for PBXNativeTarget "KSYPhotoPickerKit" */;
 			buildPhases = (
-				F076E37FDAFBCB21E600285F /* [CP] Check Pods Manifest.lock */,
 				3F24A0041FCD441C002E4DDC /* Sources */,
 				3F24A0051FCD441C002E4DDC /* Frameworks */,
 				3F24A0061FCD441C002E4DDC /* Resources */,
-				665826B7A81B593C0371F301 /* [CP] Embed Pods Frameworks */,
-				BA83AE65D380973C04ABCE5B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,62 +211,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		665826B7A81B593C0371F301 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KSYPhotoPickerKit/Pods-KSYPhotoPickerKit-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSYPhotoPickerKit/Pods-KSYPhotoPickerKit-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BA83AE65D380973C04ABCE5B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSYPhotoPickerKit/Pods-KSYPhotoPickerKit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F076E37FDAFBCB21E600285F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KSYPhotoPickerKit-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F24A0041FCD441C002E4DDC /* Sources */ = {
@@ -443,7 +360,6 @@
 		};
 		3F24A01F1FCD441C002E4DDC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10601AF95FAB5A6F64017B14 /* Pods-KSYPhotoPickerKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -463,7 +379,6 @@
 		};
 		3F24A0201FCD441C002E4DDC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32BF960AE4775069ABEF1FBF /* Pods-KSYPhotoPickerKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

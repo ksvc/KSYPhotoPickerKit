@@ -8,7 +8,6 @@
 
 #import "KSYAssetCell.h"
 
-
 #import "KSYAlbumModel.h"
 #import "KSYProgressView.h"
 #import "NSBundle+KSYPhotoPicker.h"
@@ -47,7 +46,8 @@
 #pragma mark -
 #pragma mark - private methods 私有方法
 - (void)fetchBigImage {
-    self.bigImageRequestID = [[KSYPhotoManager defaultManager] getPhotoWithAsset:self.model.asset photoWidth:self.width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+    
+    self.bigImageRequestID = [[KSYPhotoManager defaultManager] getPhotoWithAsset:self.model.asset photoWidth:CGRectGetWidth(self.frame) completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
         if (_progressView) { [self hideProgressView]; }
     } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
         if (self.model.isSelected) {
@@ -128,7 +128,7 @@
 - (void)setModel:(KSYAssetModel *)model{
     _model = model;
     self.representedAssetIdentifier = model.asset.localIdentifier;
-    int32_t imageRequestID = [[KSYPhotoManager defaultManager] getPhotoWithAsset:model.asset photoWidth:self.width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+    int32_t imageRequestID = [[KSYPhotoManager defaultManager] getPhotoWithAsset:model.asset photoWidth:CGRectGetWidth(self.bounds) completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
         self.progressView.hidden = YES;
         self.imageView.alpha = 1.0;
         if ([self.representedAssetIdentifier isEqualToString:model.asset.localIdentifier]) {
