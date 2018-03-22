@@ -111,7 +111,8 @@ UIAlertViewDelegate
     self.collectionView.contentInset = UIEdgeInsetsMake(itemMargin, itemMargin, itemMargin, itemMargin);
     
     self.collectionView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), ((self.model.assetsCount + 4 - 1) / 4) * CGRectGetWidth(self.view.frame));
-    UINib *nib = [UINib nibWithNibName:@"KSYAssetCell" bundle:[NSBundle mainBundle]];
+    NSBundle *bundle = [NSBundle bundleForClass:[KSYPhotoPickerController class]];
+    UINib *nib = [UINib nibWithNibName:@"KSYAssetCell" bundle:bundle];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"KSYAssetCell"];
 }
 

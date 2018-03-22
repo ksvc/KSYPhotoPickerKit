@@ -54,7 +54,8 @@
                     strongSelf.tableView.tableFooterView = [[UIView alloc] init];
                     strongSelf.tableView.dataSource = self;
                     strongSelf.tableView.delegate = self;
-                    [strongSelf.tableView registerNib:[UINib nibWithNibName:@"KSYAlbumCell" bundle:nil] forCellReuseIdentifier:@"KSYAlbumCell"];
+                    NSBundle *bundle = [NSBundle bundleForClass:[KSYPhotoPickerController class]];
+                    [strongSelf.tableView registerNib:[UINib nibWithNibName:@"KSYAlbumCell" bundle:bundle] forCellReuseIdentifier:@"KSYAlbumCell"];
                     [strongSelf.view addSubview:strongSelf.tableView];
                     [strongSelf.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.edges.equalTo(strongSelf.view);
@@ -121,7 +122,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     KSYAlbumModel *model = self.albums[indexPath.row];
     
-    KSYAssetViewController *assetVC = [[KSYAssetViewController alloc] initWithNibName:@"KSYAssetViewController" bundle:nil];
+    KSYAssetViewController *assetVC = [[KSYAssetViewController alloc] initWithNibName:@"KSYAssetViewController" bundle:[NSBundle bundleForClass:[KSYPhotoPickerController class]]];
     assetVC.model = model;
     [self.navigationController pushViewController:assetVC animated:YES];
 }
