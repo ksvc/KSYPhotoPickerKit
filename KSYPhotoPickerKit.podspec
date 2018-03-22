@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KSYPhotoPickerKit"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "金山云iOS 相册选择工具"
 
   s.license      = {
